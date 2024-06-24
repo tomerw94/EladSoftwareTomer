@@ -1,0 +1,43 @@
+<div class="cover">
+    <label>{{mode == Mode.Add ? 'Create new User:' : 'User Data:'}}</label>
+
+    <div class="userForm">
+        <div class="name">
+            <mat-form-field>
+                <mat-label>Enter user Name</mat-label>
+                <input matInput placeholder="Dobby" [formControl]="name" (blur)="updateErrorMessage('name')" required />
+                <mat-error>{{nameErrorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="email">
+            <mat-form-field>
+                <mat-label>Enter user email</mat-label>
+                <input matInput placeholder="freeElf@example.com" [formControl]="email"
+                    (blur)="updateErrorMessage('email')" required />
+                <mat-error>{{emailErrorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="mode == Mode.View" class="userPolicies">
+            <label>{{user.name}} Policies:</label>
+            <div *ngFor="let policy of user.policies.slice(0, maxShowedPolicies)">
+                <label> - {{policy.policyNumber}}</label>
+            </div>
+            <div *ngIf="user.policies.length > maxShowedPolicies">
+                <label>(+ {{user.policies.length - maxShowedPolicies}} more)</label>
+            </div>
+        </div>
+
+        <div class="actionButtons">
+            <button *ngIf="mode != Mode.Add" (click)="toggleEdit()">{{mode == Mode.View ? 'Edit User' :
+                'Cancel'}}</button>
+            <button [disabled]="name.invalid || email.invalid" *ngIf="mode != Mode.View"
+                (click)="onConfirm()">Confirm</button>
+            <button *ngIf="mode == Mode.Edit" (click)="onDelete()">
+                <mat-icon>delete</mat-icon>
+                Delete
+            </button>
+        </div>
+    </div>
+</div>

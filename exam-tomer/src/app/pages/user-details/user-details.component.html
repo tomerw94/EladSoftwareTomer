@@ -1,0 +1,135 @@
+<div class="page">
+    <div class="userData" *ngIf="user">
+        <button (click)="onBack()">
+            <mat-icon>people</mat-icon>
+            All Users
+        </button>
+        <div>
+
+            <label>Name: </label>
+            <label>{{user.name}}</label>
+        </div>
+        <div>
+            <label>Email: </label>
+            <label>{{user.email}}</label>
+        </div>
+    </div>
+
+    <div class="userPolicies">
+        <label>{{user.name}} Policies:</label>
+        <div class="filters">
+            <div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Policy Start Min Date</mat-label>
+                        <input matInput [matDatepicker]="startStartPicker" placeholder="Start Min Date"
+                            (dateChange)="applyDateRangeFilter()" [(ngModel)]="startStartDateFilter">
+                        <mat-datepicker-toggle matSuffix [for]="startStartPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startStartPicker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Policy Start Max Date</mat-label>
+                        <input matInput [matDatepicker]="startEndPicker" placeholder="Start Max Date"
+                            (dateChange)="applyDateRangeFilter()" [(ngModel)]="startEndDateFilter">
+                        <mat-datepicker-toggle matSuffix [for]="startEndPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startEndPicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Policy End Min Date</mat-label>
+                        <input matInput [matDatepicker]="endStartPicker" placeholder="Start Min Date"
+                            (dateChange)="applyDateRangeFilter()" [(ngModel)]="endStartDateFilter">
+                        <mat-datepicker-toggle matSuffix [for]="endStartPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #endStartPicker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Policy End Max Date</mat-label>
+                        <input matInput [matDatepicker]="endEndPicker" placeholder="Start Max Date"
+                            (dateChange)="applyDateRangeFilter()" [(ngModel)]="endEndDateFilter">
+                        <mat-datepicker-toggle matSuffix [for]="endEndPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #endEndPicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div>
+
+                    <mat-form-field>
+                        <mat-label>Policy Cover Min</mat-label>
+                        <input matInput type="number" placeholder="Minimum Cover" (change)="applyDateRangeFilter()"
+                            [(ngModel)]="minAmountFilter">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Policy Cover Max</mat-label>
+                        <input matInput type="number" placeholder="Maximum Cover" (change)="applyDateRangeFilter()"
+                            [(ngModel)]="maxAmountFilter">
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <mat-label>Policy Number</mat-label>
+                        <input matInput placeholder="Policy Number" (change)="applyDateRangeFilter()"
+                            [(ngModel)]="policyNumberFilter">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div>
+                <button (click)="clearFilters()">
+                    <mat-icon>clear_all</mat-icon>
+                    Clear Filters
+                </button>
+            </div>
+            <div>
+                <button (click)="onAddPolicy()">
+                    <mat-icon>note_add</mat-icon>
+                    New Policy
+                </button>
+            </div>
+        </div>
+        <div class="table">
+            <div class="spinner" *ngIf="loading">
+                <mat-spinner></mat-spinner>
+            </div>
+            <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="policyNumber">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Policy Number </th>
+                    <td mat-cell *matCellDef="let policy"> {{policy.policyNumber}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="amount">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Policy Cover Amount </th>
+                    <td mat-cell *matCellDef="let policy"> {{policy.amount}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="start">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
+                    <td mat-cell *matCellDef="let policy">{{policy.start | date: 'dd/MM/yyyy'}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="end">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> End Date </th>
+                    <td mat-cell *matCellDef="let policy">{{policy.end | date: 'dd/MM/yyyy'}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef> Actions </th>
+                    <td mat-cell *matCellDef="let policy">
+                        <button (click)="deletePolicy(policy)"><mat-icon>delete</mat-icon>Delete</button>
+                        <button (click)="editPolicy(policy)"><mat-icon>edit</mat-icon>Edit</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+
+    </div>
+</div>

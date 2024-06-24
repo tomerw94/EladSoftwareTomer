@@ -1,0 +1,50 @@
+@import 'src/styles.scss';
+
+.dialog {
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    position: relative;
+
+    div:nth-child(1) {
+        label {
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }
+
+    div:nth-child(2) {
+        margin-top: 30px;
+
+        label {
+            font-size: 16px;
+        }
+    }
+
+    div:nth-child(3) {
+        position: absolute;
+        bottom: 0;
+    }
+
+    div {
+        width: 100%;
+        margin-top: 30px;
+
+        button:nth-child(1) {
+            @extend .bgBlue;
+            float: left;
+        }
+
+        button:nth-child(2) {
+            @extend .bgRed;
+            float: right;
+        }
+
+        button {
+            width: 100px;
+            height: 40px;
+            font-size: 15px;
+            font-weight: 700;
+        }
+    }
+}

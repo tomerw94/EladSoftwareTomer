@@ -1,0 +1,51 @@
+<div *ngIf="policy" class="dialog">
+    <div class="spinner" *ngIf="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div class="title">
+        <button (click)="cancel()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <label>{{isEdit ? "Edit Policy: " + policy.policyNumber : "Create New Policy"}}</label>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="dates">
+            <div>
+                <mat-form-field>
+                    <mat-label>Start Date</mat-label>
+                    <input matInput [matDatepicker]="startPicker" (dateChange)="updateValidity()"
+                        placeholder="Policy Start Date" formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startPicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>End Date</mat-label>
+                    <input matInput [matDatepicker]="endPicker" (dateChange)="updateValidity()"
+                        placeholder="Policy End Date" formControlName="endDate">
+                    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endPicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Policy Number</mat-label>
+                <input matInput min="0" placeholder="Policy Number" formControlName="policyNumber">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Policy Cover Amount</mat-label>
+                <input matInput type="number" placeholder="Maximum Cover" formControlName="amount">
+            </mat-form-field>
+        </div>
+        <div *ngIf="form.errors?.['formInvalid']">
+            <p>Unvalid data.</p>
+        </div>
+        <div class="confirm" [style.pointer-events]="form.invalid ? 'none' : ''">
+            <button [disabled]="form.invalid" type="submit">{{isEdit ? 'Update Policy' : 'Create Policy'}}</button>
+        </div>
+    </form>
+</div>

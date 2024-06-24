@@ -1,0 +1,131 @@
+@import 'src/styles.scss';
+
+.page {
+    padding: 5px;
+}
+
+.userData {
+    height: 15vh;
+    text-align: center;
+
+    div {
+        padding: 10px;
+
+        label {
+            font-size: 20px;
+            margin-top: 10px;
+            margin: 5px;
+        }
+
+        label:nth-child(1) {
+            font-weight: 700;
+            text-decoration: underline;
+        }
+    }
+
+
+    button {
+        @extend .bgBlue;
+        position: absolute;
+        left: 2vw;
+        top: 2vh;
+        width: 18vh;
+        height: 12vh;
+        font-size: 2vh;
+        font-weight: 400;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        mat-icon {
+            font-size: 10vh;
+            width: 10vh;
+            height: 9vh;
+        }
+
+    }
+}
+
+.userPolicies {
+    label {
+        font-size: 20px;
+        text-decoration: underline;
+        margin: 10px;
+    }
+
+    table {
+        width: 100%;
+        position: relative;
+    }
+}
+
+.filters {
+    border: 1px dotted;
+    width: 100%;
+    display: flex;
+
+    div {
+        width: 80vw;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+
+        padding: 10px;
+
+        div {
+
+            display: flex;
+            flex-direction: column;
+
+            mat-form-field {
+                padding: 10px;
+            }
+
+        }
+
+        button {
+            @extend .bgBlue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 50%;
+            width: 7.5vw;
+            margin: auto;
+            font-size: 15px;
+            font-weight: 700;
+
+            mat-icon {
+                font-size: 7vh;
+                width: 5vw;
+                height: 6.5vh;
+            }
+        }
+    }
+}
+
+.table {
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+td {
+    button {
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        border: none;
+        margin-right: 15px;
+    }
+
+    button:nth-child(1) {
+        mat-icon {
+            color: red;
+        }
+    }
+
+    button:nth-child(2) {
+        mat-icon {
+            color: rgb(72, 181, 249);
+        }
+    }
+}

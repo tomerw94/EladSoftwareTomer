@@ -1,0 +1,12 @@
+<div class="dialog">
+    <div>
+        <label>{{data.title}}</label>
+    </div>
+    <div>
+        <label>{{data.description}}</label>
+    </div>
+    <div>
+        <button (click)="onResult(false)">Cancel</button>
+        <button (click)="onResult(true)">{{data.confirmText}}</button>
+    </div>
+</div>

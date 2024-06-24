@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: rgb(221, 240, 255);
+}
+
+button {
+    cursor: pointer !important;
+}
+
+button:disabled {
+    pointer-events: none !important;
+}
+
+button:active {
+    box-shadow: 0 3px #bbb;
+}
+
+.spinner {
+    position: absolute;
+    left: 50%;
+    top: 12%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.mat-paginator {
+    display: flex;
+    justify-content: center;
+}
+
+.mat-dialog-container {
+    padding: 12px !important; // default is 24
+}
+
+.bgBlue {
+    background-color: rgb(164, 214, 255);
+    border: none;
+    border-radius: 6px;
+}
+
+.bgBlue:hover {
+    background-color: rgb(139, 198, 247);
+}
+
+.bgRed {
+    background-color: rgb(251, 68, 68);
+    border: none;
+    border-radius: 6px;
+}
+
+.bgRed:hover {
+    background-color: rgb(248, 34, 34);
+}
